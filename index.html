@@ -3,209 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CampusMind AI Firebase Dashboard</title>
+  <title>CampusMind AI Login</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-  <div class="app-shell">
-    <aside class="sidebar">
-      <div class="brand">
-        <div class="logo">CM</div>
-        <div>
-          <h1>CampusMind AI</h1>
-          <p>Firebase Data Analytics</p>
-        </div>
-      </div>
+<body class="auth-body">
+  <main class="auth-card">
+    <div class="brand">CM</div>
+    <h1>CampusMind AI</h1>
+    <p>Firebase Login System</p>
 
-      <nav>
-        <a href="#dashboard" class="nav-link active">Dashboard</a>
-        <a href="#manage" class="nav-link">Add / Edit Data</a>
-        <a href="#analytics" class="nav-link">Analytics</a>
-        <a href="#ai" class="nav-link">AI Insights</a>
-        <a href="#setup" class="nav-link">Firebase Setup</a>
-      </nav>
+    <input id="email" type="email" placeholder="Email address" />
+    <input id="password" type="password" placeholder="Password" />
 
-      <div class="status-card">
-        <span class="dot" id="connectionDot"></span>
-        <div>
-          <strong id="connectionTitle">Local Mode</strong>
-          <p id="connectionText">Firebase config add pannunga</p>
-        </div>
-      </div>
-    </aside>
+    <button id="loginBtn">Login</button>
+    <button id="registerBtn" class="secondary">Create Account</button>
+    <button id="forgotBtn" class="link-btn">Forgot Password?</button>
 
-    <main class="content">
-      <header class="hero" id="dashboard">
-        <div>
-          <span class="eyebrow">AI + Data Analytics + Firebase</span>
-          <h2>Student Performance Intelligence Dashboard</h2>
-          <p>Website-la directly student data add, edit, delete pannalam. Code change panna thevai illa.</p>
-        </div>
-        <div class="hero-actions">
-          <button class="primary" id="openStudentFormBtn">+ Add Student</button>
-          <button class="secondary" id="openFirebaseBtn">Firebase Connect</button>
-        </div>
-      </header>
-
-      <section class="metrics-grid">
-        <article class="metric-card">
-          <p>Total Students</p>
-          <h3 id="totalStudents">0</h3>
-          <span>Live count</span>
-        </article>
-        <article class="metric-card">
-          <p>Avg Attendance</p>
-          <h3 id="avgAttendance">0%</h3>
-          <span>Auto calculated</span>
-        </article>
-        <article class="metric-card">
-          <p>Avg Marks</p>
-          <h3 id="avgMarks">0%</h3>
-          <span>Performance score</span>
-        </article>
-        <article class="metric-card danger">
-          <p>High Risk</p>
-          <h3 id="highRisk">0</h3>
-          <span>AI warning</span>
-        </article>
-        <article class="metric-card success">
-          <p>Placement Ready</p>
-          <h3 id="placementReady">0</h3>
-          <span>Score above 70%</span>
-        </article>
-      </section>
-
-      <section class="panel" id="manage">
-        <div class="panel-header">
-          <div>
-            <span class="eyebrow">Admin Data Panel</span>
-            <h2>Add / Edit Student Data</h2>
-          </div>
-          <div class="tools">
-            <input type="search" id="searchInput" placeholder="Search name / reg no / department" />
-            <button class="secondary" id="seedBtn">Load Sample Data</button>
-            <button class="secondary" id="exportBtn">Export JSON</button>
-          </div>
-        </div>
-
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Reg No</th>
-                <th>Dept</th>
-                <th>Year</th>
-                <th>Attendance</th>
-                <th>Marks</th>
-                <th>Placement</th>
-                <th>Risk</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody id="studentTable"></tbody>
-          </table>
-        </div>
-      </section>
-
-      <section class="panel" id="analytics">
-        <div class="panel-header">
-          <div>
-            <span class="eyebrow">Visual Analytics</span>
-            <h2>Department & Performance Charts</h2>
-          </div>
-        </div>
-        <div class="charts-grid">
-          <article class="chart-card">
-            <h3>Department Count</h3>
-            <div id="deptChart" class="bar-chart"></div>
-          </article>
-          <article class="chart-card">
-            <h3>Top Performance</h3>
-            <div id="performanceChart" class="bar-chart"></div>
-          </article>
-        </div>
-      </section>
-
-      <section class="panel" id="ai">
-        <div class="panel-header">
-          <div>
-            <span class="eyebrow">AI Assistant</span>
-            <h2>Smart Suggestions</h2>
-          </div>
-        </div>
-        <div class="ai-grid" id="aiInsights"></div>
-      </section>
-
-      <section class="panel setup-panel" id="setup">
-        <div class="panel-header">
-          <div>
-            <span class="eyebrow">Firebase</span>
-            <h2>Connect Firestore Database</h2>
-            <p>Firebase config paste pannina, data cloud-la save aagum. GitHub Pages reload pannalum data irukkum.</p>
-          </div>
-          <button class="primary" id="openFirebaseBtn2">Setup Firebase</button>
-        </div>
-        <div class="steps">
-          <div><b>1.</b> Firebase Console → Create Project</div>
-          <div><b>2.</b> Web App create panni Firebase config copy pannunga</div>
-          <div><b>3.</b> Firestore Database → Start in test mode</div>
-          <div><b>4.</b> Indha website-la Firebase Connect click panni config paste pannunga</div>
-        </div>
-      </section>
-    </main>
-  </div>
-
-  <dialog id="studentDialog">
-    <form method="dialog" class="dialog-card" id="studentForm">
-      <div class="dialog-header">
-        <h2 id="formTitle">Add Student</h2>
-        <button type="button" class="icon-btn" id="closeStudentDialog">×</button>
-      </div>
-      <input type="hidden" id="studentId" />
-      <div class="form-grid">
-        <label>Student Name<input id="name" required placeholder="Sreejith" /></label>
-        <label>Register No<input id="regNo" required placeholder="23CS001" /></label>
-        <label>Department<input id="department" required placeholder="BCA / CSE / IT" /></label>
-        <label>Year<select id="year"><option>1st Year</option><option>2nd Year</option><option>3rd Year</option><option>4th Year</option></select></label>
-        <label>Attendance %<input id="attendance" type="number" min="0" max="100" required placeholder="85" /></label>
-        <label>Marks %<input id="marks" type="number" min="0" max="100" required placeholder="78" /></label>
-        <label>Skills Score %<input id="skills" type="number" min="0" max="100" required placeholder="80" /></label>
-        <label>Communication %<input id="communication" type="number" min="0" max="100" required placeholder="75" /></label>
-        <label>Project Score %<input id="projects" type="number" min="0" max="100" required placeholder="82" /></label>
-      </div>
-      <div class="dialog-actions">
-        <button type="button" class="secondary" id="resetFormBtn">Reset</button>
-        <button class="primary" id="saveStudentBtn">Save Student</button>
-      </div>
-    </form>
-  </dialog>
-
-  <dialog id="firebaseDialog">
-    <form method="dialog" class="dialog-card firebase-card" id="firebaseForm">
-      <div class="dialog-header">
-        <h2>Firebase Config</h2>
-        <button type="button" class="icon-btn" id="closeFirebaseDialog">×</button>
-      </div>
-      <p class="help-text">Firebase Console-la irukkura config object mattum paste pannunga. Example: { apiKey: "...", authDomain: "..." }</p>
-      <textarea id="firebaseConfigInput" rows="10" placeholder='{
-  "apiKey": "YOUR_API_KEY",
-  "authDomain": "YOUR_PROJECT.firebaseapp.com",
-  "projectId": "YOUR_PROJECT_ID",
-  "storageBucket": "YOUR_PROJECT.appspot.com",
-  "messagingSenderId": "123456789",
-  "appId": "1:123:web:abc"
-}'></textarea>
-      <div class="dialog-actions">
-        <button type="button" class="secondary" id="clearFirebaseBtn">Clear Config</button>
-        <button class="primary">Save & Connect</button>
-      </div>
-    </form>
-  </dialog>
-
-  <div id="toast" class="toast"></div>
+    <p id="authMsg" class="msg"></p>
+  </main>
 
   <script src="firebase-config.js"></script>
-  <script type="module" src="app.js"></script>
+  <script type="module" src="auth.js"></script>
 </body>
 </html>
